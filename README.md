@@ -40,7 +40,8 @@ Retrieves public domain registration data. The output contains two records: the 
 | Domain status | clientDeleteProhibited, clientRenewProhibited, clientTransferProhibited, clientUpdateProhibited |
 | DNSSEC | unsigned |
 
- 
+ Networkwalks-Week2-Cybersecurity-Lab/WHOIS.png
+
 
 ### Task 2 - WhatWeb
 
