@@ -40,7 +40,11 @@ Retrieves public domain registration data. The output contains two records: the 
 | Domain status | clientDeleteProhibited, clientRenewProhibited, clientTransferProhibited, clientUpdateProhibited |
 | DNSSEC | unsigned |
 
- Networkwalks-Week2-Cybersecurity-Lab/WHOIS.png
+ 
+<img width="1920" height="1020" alt="WHOIS" src="https://github.com/user-attachments/assets/e17faefa-c057-400d-a968-7ec46d0c0fb9" />
+<img width="1920" height="1020" alt="whois1" src="https://github.com/user-attachments/assets/c77eeb5c-d5ff-42f5-a2d1-83d3e71ca3ca" />
+
+ 
 
 
 ### Task 2 - WhatWeb
@@ -66,7 +70,8 @@ Fingerprints web technologies. `http://` returns `301 Moved Permanently` to `htt
 
 > **Note:** WhatWeb also reports `Bootstrap 7.1.4`, which is identical to the WordPress version. This is most likely a false positive (a version string read from a `?ver=` asset parameter), so it is not treated as a reliable finding.
 
-![WhatWeb](screenshots/module-1/whatweb.png)
+ <img width="1920" height="1020" alt="whatweb" src="https://github.com/user-attachments/assets/3c7145a8-ab4b-403a-b23c-c3a36eafa3a6" />
+
 
 ### Task 3 - NSLookup
 
@@ -80,7 +85,8 @@ nslookup networkwalks.com
 | Answer type | Non-authoritative |
 | Resolved IP | 192.232.216.135 |
 
-![NSLookup](screenshots/module-1/nslookup.png)
+ <img width="1920" height="1020" alt="nslookup" src="https://github.com/user-attachments/assets/f3e08828-e671-4d8f-8577-2530b7c91f98" />
+
 
 ### Task 4 - HTTP response headers
 
@@ -102,8 +108,9 @@ Response: `HTTP/1.1 200 OK`
 | X-nginx-cache | WordPress |
 
 > **Observation:** No `Strict-Transport-Security`, `Content-Security-Policy`, `X-Frame-Options` or `X-Content-Type-Options` headers appear in this response.
+<img width="1900" height="666" alt="curl -I" src="https://github.com/user-attachments/assets/6d3ea658-6e6d-4c91-8eec-4d1f2b859597" />
 
-![cURL headers](screenshots/module-1/curl-headers.png)
+ 
 
 ### Task 5 - Web Application Firewall detection
 
@@ -117,7 +124,8 @@ wafw00f networkwalks.com
 | Requests sent | 2 |
 | Result | `https://networkwalks.com` is behind **ModSecurity (SpiderLabs)** WAF |
 
-![WAFW00F](screenshots/module-1/wafw00f.png)
+ <img width="1841" height="912" alt="waafw00f" src="https://github.com/user-attachments/assets/af4dfd57-d7ee-4c1d-bd8a-4dfce664f68f" />
+
 
 ### Task 6 - DNS enumeration
 
@@ -142,9 +150,65 @@ DNSRecon reported **8 records found** (the SRV records).
 - Both name servers disclose their BIND version (`9.16.23-RH`).
 - The DNSSEC query returned no answer, consistent with WHOIS showing DNSSEC as unsigned.
 
-![DNSRecon](screenshots/module-1/dnsrecon.png)
+ 
+<img width="1832" height="896" alt="dnsrecon" src="https://github.com/user-attachments/assets/713fdb7c-9e9b-4427-b92c-b1295d7cbfd4" />
+
 
 ---
+
+## Module 5 - Network Scanning with Zenmap
+
+**Objective:** Discover live hosts on the local network using Zenmap/Nmap and visualise the result as a network topology.
+
+### Task 1 - Download & install Zenmap
+
+Zenmap/Nmap was downloaded and installed for the scanning lab.
+
+ <img width="1660" height="921" alt="Screenshot 2026-11-16 150221" src="https://github.com/user-attachments/assets/5ed8b1ec-05a8-4e2a-9d56-f337a2265f8c" />
+ <img width="750" height="548" alt="nmap-installed" src="https://github.com/user-attachments/assets/20896a06-665b-4c6a-87e7-b2ae7f6ca38c" />
+
+
+### Task 2 - Local IP address & LAN subnet
+
+| Parameter | Value |
+|---|---|
+| Local IPv4 address | 192.168.0.106 |
+| Subnet mask | 255.255.255.0 |
+| Default gateway | 192.168.0.1 |
+| LAN subnet | 192.168.0.0/24 |
+
+ <img width="1001" height="528" alt="Screenshot 2026-11-16 150756" src="https://github.com/user-attachments/assets/fca44197-8244-49ed-9d8d-da7a75667e59" />
+
+
+### Task 3 - Find live hosts
+
+Zenmap **Ping scan** profile (equivalent to `nmap -sn`) against the whole LAN subnet:
+
+```
+192.168.0.0/24
+```
+
+ <img width="1001" height="502" alt="live host " src="https://github.com/user-attachments/assets/736d6b94-5b7b-4fbc-b81d-9d82382f077c" />
+
+
+### Task 4 - Number of live hosts
+
+**2 live host** found in the subnet.
+
+### Task 5 - IP addresses of live hosts
+
+| # | IP address |
+|---|---|
+| 1 | 192.168.0.106 (the local machine) |
+
+### Task 6 - Network topology
+
+Zenmap's Topology view was used to visualise the discovered host.
+
+ <img width="975" height="411" alt="Screenshot 2026-11-16 152016" src="https://github.com/user-attachments/assets/1e5daadd-a5ca-4ba7-89b9-4e39fbd025bc" />
+
+
+
 
 ## Tools Used
 
